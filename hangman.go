@@ -31,7 +31,7 @@ func hangman(secretWord string) {
 	var guess string
 
 	// Loops until the word is guessed or no more guesses left.
-	for guesses := guesses; guesses > 0; guesses-- {
+	for guesses := guesses; guesses > 0; {
 		fmt.Scanln(&guess)
 		// // Checks if input is valid.
 		letterCheck := checkString(guess)
@@ -54,9 +54,9 @@ func hangman(secretWord string) {
 				guesses++
 				break
 			}
-			//fmt.Println("Wrong guess")
-
 		}
+		fmt.Println("Wrong guess")
+		guesses--
 		arrayToFill = strings.Split(wordToFill, "")
 		fmt.Println("Your guess so far: ", getGuessedWord(secretWord, arrayToFill))
 		fmt.Println("Available letters:\n", getAvailable(arrayToFill))
